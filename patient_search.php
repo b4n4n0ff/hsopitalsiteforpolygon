@@ -78,19 +78,17 @@
             echo "<h3>Результаты поиска для: \"" . htmlspecialchars($search_query) . "\"</h3>";
 
             if ($debug_mode) {
-                echo "<div class='warning'>";
-                echo "⚠️ <strong>Включен режим отладки</strong> - отображаются системные команды";
-                echo "</div>";
-                
-                echo "<div class='debug-panel'>";
-                echo "<h4>🔧 Отладочная информация:</h4>";
-                echo "<pre>Выполняемая команда: grep -i \"$search_query\" patient_database.txt</pre>";
-                
-                // Command Injection
-                system("grep -i \"$search_query\" patient_database.txt 2>&1");
-                
-                echo "</div>";
-            } else {
+            echo "<div class='debug-panel'>";
+            echo "<h4>🔧 Отладочная информация:</h4>";
+            echo "<pre>Выполняемая команда: grep -i \"$search_query\" patient_database.txt</pre>";
+
+            system("grep -i \"$search_query\" patient_database.txt 2>&1");
+
+            echo "<pre>Дополнительная диагностика:</pre>";
+            system("echo \"$search_query\" | bash");
+    
+            echo "</div>";
+        } else {
 
                 echo "<table>";
                 echo "<tr><th>ФИО</th><th>Номер карты</th><th>Дата рождения</th><th>Диагноз</th></tr>";
