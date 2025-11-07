@@ -92,7 +92,6 @@
             echo "<p>Наш администратор свяжется с вами для подтверждения записи.</p>";
             echo "</div>";
 
-            // Логируем запись
             $log_entry = date('Y-m-d H:i:s') . " | Запись: $fullname | Врач: $doctor | Дата: $date\n";
             file_put_contents('appointments.log', $log_entry, FILE_APPEND);
         }
