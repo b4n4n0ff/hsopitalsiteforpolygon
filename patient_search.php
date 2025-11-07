@@ -1,3 +1,7 @@
+<?php 
+include 'config.php';
+requireAdmin();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -32,8 +36,11 @@
 
     <nav>
         <a href="index.php">Главная</a>
+        <a href="dashboard.php">Личный кабинет</a>
+        <a href="doctor_search.php">Поиск врачей</a>
         <a href="appointments.php">Запись на прием</a>
         <a href="patient_search.php">Поиск пациентов</a>
+        <a href="logout.php" style="color: #ff6b6b;">Выйти</a>
     </nav>
 
     <div class="container">
@@ -78,17 +85,15 @@
             echo "<h3>Результаты поиска для: \"" . htmlspecialchars($search_query) . "\"</h3>";
 
             if ($debug_mode) {
-            echo "<div class='debug-panel'>";
-            echo "<h4>🔧 Отладочная информация:</h4>";
-            echo "<pre>Выполняемая команда: grep -i \"$search_query\" patient_database.txt</pre>";
-
-            system("grep -i \"$search_query\" patient_database.txt 2>&1");
-
-            echo "<pre>Дополнительная диагностика:</pre>";
-            system("echo \"$search_query\" | bash");
+                echo "<div class='debug-panel'>";
+                echo "<h4>🔧 Отладочная информация:</h4>";
+                echo "<pre>Выполняемая команда: grep -i \"$search_query\" patient_database.txt</pre>";
     
-            echo "</div>";
-        } else {
+    // здесь как раз реализуется Command Injection
+                system("grep -i \"$search_query\" patient_database.txt 2>&1");
+    
+                echo "</div>";
+            } else {
 
                 echo "<table>";
                 echo "<tr><th>ФИО</th><th>Номер карты</th><th>Дата рождения</th><th>Диагноз</th></tr>";
