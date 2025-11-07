@@ -21,8 +21,8 @@
 
     <nav>
         <a href="index.php">Главная</a>
-        <a href="appointments.php">Запись на прием</a>
-        <a href="patient_search.php">Поиск пациентов</a>
+        <a href="login.php">Вход</a>
+        <a href="register.php">Регистрация</a>
     </nav>
 
     <div class="container">
